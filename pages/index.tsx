@@ -1,7 +1,8 @@
 import type {NextPage} from 'next';
 import styled from 'styled-components';
 import React, {useState} from 'react';
-import {MoonIcon, SunIcon} from '@chakra-ui/icons';
+import {Sun} from '@styled-icons/bootstrap/Sun'
+import {Moon} from '@styled-icons/bootstrap/Moon'
 
 const StyledHeader = styled.div`
   width: 100vw;
@@ -16,7 +17,7 @@ const StyledLogo = styled.div`
   display: flex;
   justify-content: end;
   font-family: 'Satisfy', cursive;
-  font-size: 25px;
+  font-size: 2em;
   width: 30%;
   padding-right: 30px;
   color: ${(props: { color: string }) => props.color};
@@ -28,10 +29,10 @@ const StyledContent = styled.ul`
   width: 30%;
   justify-content: Start;
   font-family: 'Roboto Mono', monospace;
-  font-size: 20px;
+  font-size: 1.5em;
   margin: 0 5px;
 
-  li {
+  a {
     display: flex;
     width: 100px;
     text-decoration: none;
@@ -43,8 +44,38 @@ const StyledSwitcher = styled.div`
   display: flex;
   justify-content: start;
   width: 30%;
+  cursor: pointer;
   color: ${(props: { color: string }) => props.color};
 `
+
+const OpenLinksButton = styled.button`
+  width: 70px;
+  height: 50px;
+  color: white;
+  font-size: 45px;
+  cursor: pointer;
+  background: none;
+  border: none;
+`
+
+const SunIcon = styled(Sun)``
+
+const MoonIcon = styled(Moon)``
+
+const navLinks = [
+    {
+        title: 'Work',
+        link: '',
+    },
+    {
+        title: 'Post',
+        link: '',
+    },
+    {
+        title: 'Git',
+        link: '',
+    }
+]
 
 const Home: NextPage = () => {
     const [switcherBackground, setSwitcherBackground] = useState<boolean>(true);
@@ -69,15 +100,21 @@ const Home: NextPage = () => {
                 Aziret Sherov
             </StyledLogo>
             <StyledContent color={checkSwitcherItemColor()}>
-                <li>Work</li>
-                <li>Posts</li>
-                <li>Git</li>
+                {
+                    navLinks.map((link, index) => (
+                        <a
+                            key={index}
+                            href={'#'}>
+                            {link.title}
+                        </a>))
+                }
             </StyledContent>
+            <OpenLinksButton>&#8801;</OpenLinksButton>
             <StyledSwitcher color={checkSwitcherItemColor()}>
                 {
                     switcherBackground
-                        ? <MoonIcon onClick={() => setSwitcherBackground(!switcherBackground)}/>
-                        : <SunIcon onClick={() => setSwitcherBackground(!switcherBackground)}/>
+                        ? <MoonIcon size={'2em'} onClick={() => setSwitcherBackground(!switcherBackground)}/>
+                        : <SunIcon size={'2em'} onClick={() => setSwitcherBackground(!switcherBackground)}/>
                 }
             </StyledSwitcher>
         </StyledHeader>
