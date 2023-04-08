@@ -5,7 +5,7 @@ import Content from "./components/Content";
 const HomePage = () => {
     return (
         <>
-            <Header/>
+            {/*<Header/>*/}
             <Content/>
         </>
     );

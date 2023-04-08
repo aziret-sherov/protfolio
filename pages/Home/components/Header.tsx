@@ -58,18 +58,18 @@ const OpenLinksButton = styled.button`
 `
 
 const navLinks: any[] = [
-    // {
-    //     title: 'Work',
-    //     link: '',
-    // },
-    // {
-    //     title: 'Post',
-    //     link: '',
-    // },
-    // {
-    //     title: 'Git',
-    //     link: '',
-    // }
+    {
+        title: 'Work',
+        link: '',
+    },
+    {
+        title: 'Post',
+        link: '',
+    },
+    {
+        title: 'Git',
+        link: '',
+    }
 ]
 
 const Header = () => {
@@ -105,7 +105,7 @@ const Header = () => {
                         ))
                 }
             </StyledContent>
-            {/*<OpenLinksButton color={checkSwitcherItemColor()} >&#8801;</OpenLinksButton>*/}
+            <OpenLinksButton color={checkSwitcherItemColor()} >&#8801;</OpenLinksButton>
             <StyledSwitcher color={checkSwitcherItemColor()}>
                 {
                     switcherBackground
