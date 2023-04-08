@@ -97,8 +97,8 @@ const Header = () => {
             <StyledContent color={checkSwitcherItemColor()}>
                 {
                     navLinks.map((link, index) => (
-                        <Typography>
-                            <a key={index} href={'#'}>
+                        <Typography key={index}>
+                            <a href={'#'}>
                                 {link.title}
                             </a>
                         </Typography>
