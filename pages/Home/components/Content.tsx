@@ -97,45 +97,47 @@ const NetworkIcon = styled.img`
 `;
 
 const Content: React.FC = () => {
-    return (
-        <ProfileContainer>
-            <ProfileImage
-                src="/profile_image.JPG"
-                alt="Profile image"
-                width={120}
-                height={120}
-                objectFit="cover"
-                className="profile-image"
-            />
-            <ProfileName>
-                <Typography>Aziret Sherov</Typography>
-            </ProfileName>
-            <ProfileProfession>
-                <Typography>Software Engineer</Typography>
-            </ProfileProfession>
-            <NetworkList>
-                <NetworkItem>
-                    <NetworkLink href="https://www.linkedin.com/in/aziret-sherov/" target="_blank">
-                        <NetworkIcon src="/linkedin-icon.svg" alt="LinkedIn" />
-                        <span>LinkedIn</span>
-                    </NetworkLink>
-                </NetworkItem>
-                <NetworkItem>
-                    <NetworkLink href="https://github.com/aziret-sherov" target="_blank">
-                        <NetworkIcon src="/github-icon.svg" alt="GitHub" />
-                        <span>GitHub</span>
-                    </NetworkLink>
-                </NetworkItem>
-                <NetworkItem>
-                    <NetworkLink href="https://twitter.com/AziretSherov" target="_blank">
-                        <NetworkIcon src="/twitter-icon.svg" alt="Twitter" />
-                        <span>Twitter</span>
-                    </NetworkLink>
-                </NetworkItem>
-            </NetworkList>
-
-        </ProfileContainer>
-    );
+  return (
+    <ProfileContainer>
+      <ProfileImage
+        src="/profile_image.JPG"
+        alt="Profile image"
+        width={120}
+        height={120}
+        objectFit="cover"
+        className="profile-image"
+      />
+      <ProfileName>
+        <Typography>Aziret Sherov</Typography>
+      </ProfileName>
+      <ProfileProfession>
+        <Typography>Software Engineer</Typography>
+      </ProfileProfession>
+      <NetworkList>
+        <NetworkItem>
+          <NetworkLink
+            href="https://www.linkedin.com/in/aziret-sherov/"
+            target="_blank"
+          >
+            <NetworkIcon src="/linkedin-icon.svg" alt="LinkedIn" />
+            <span>LinkedIn</span>
+          </NetworkLink>
+        </NetworkItem>
+        <NetworkItem>
+          <NetworkLink href="https://github.com/aziret-sherov" target="_blank">
+            <NetworkIcon src="/github-icon.svg" alt="GitHub" />
+            <span>GitHub</span>
+          </NetworkLink>
+        </NetworkItem>
+        <NetworkItem>
+          <NetworkLink href="https://twitter.com/AziretSherov" target="_blank">
+            <NetworkIcon src="/twitter-icon.svg" alt="Twitter" />
+            <span>Twitter</span>
+          </NetworkLink>
+        </NetworkItem>
+      </NetworkList>
+    </ProfileContainer>
+  );
 };
 
 export default Content;
