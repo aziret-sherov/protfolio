@@ -21,10 +21,5 @@
         "@typescript-eslint"
     ],
     "rules": {
-        // Example rule using deprecated parameter
-        "example-rule": ["error", "originalKeywordKind"],
-
-        // Update affected rule to use the replacement parameter
-        "example-rule": ["error", { "identifier": "originalKeywordKind" }]
     }
 }
