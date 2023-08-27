@@ -1,8 +1,11 @@
 import React, {useEffect, useRef} from "react";
 import * as THREE from "three";
+import GltfModel from "../helpers/GltModel";
+import { Canvas } from '@react-three/fiber';
 
 const MainScene = () => {
     const sceneRef = useRef<HTMLDivElement | null>(null);
+    const modelPath = 'models/pack_leader_highwire_fortnite.glb';
 
     useEffect(() => {
         if (!sceneRef.current) return;
@@ -63,7 +66,14 @@ const MainScene = () => {
         };
     }, []);
 
-    return <div ref={sceneRef}></div>;
+    return (<>
+        <Canvas>
+            <ambientLight/>
+            <pointLight position={[10, 10, 10]}/>
+            <GltfModel url={modelPath}/>
+        </Canvas>
+        <div ref={sceneRef}></div>
+    </>);
 };
 
 export default MainScene;
