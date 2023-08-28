@@ -17,6 +17,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-is": "^16.8",
+    "react-three-fiber": "^6.0.13",
     "styled-components": "^2",
     "three": "^0.155.0"
   },

@@ -2,15 +2,17 @@ import React, {useEffect, useRef} from "react";
 import * as THREE from "three";
 import GltfModel from "../helpers/GltModel";
 import { Canvas } from '@react-three/fiber';
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
 const MainScene = () => {
     const sceneRef = useRef<HTMLDivElement | null>(null);
-    const modelPath = 'models/pack_leader_highwire_fortnite.glb';
+    const modelPath = '/models/SM2.glb';
 
     useEffect(() => {
         if (!sceneRef.current) return;
 
         const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffa500);
         const camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
@@ -21,11 +23,44 @@ const MainScene = () => {
         const renderer = new THREE.WebGLRenderer();
         sceneRef.current.appendChild(renderer.domElement);
 
-        // Create a cube
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
+        const loader = new GLTFLoader();
+        loader.load(modelPath, (gltf) => {
+            const model = gltf.scene;
+            scene.add(model);
+
+            const onMouseDown = (event: any) => {
+                let startX = event.clientX;
+                let startY = event.clientY;
+
+                const onMouseMove = (event: any) => {
+                    const deltaX = event.clientX - startX;
+                    const deltaY = event.clientY - startY;
+
+                    model.rotation.x += deltaY * 0.01;
+                    model.rotation.y += deltaX * 0.01;
+
+                    startX = event.clientX;
+                    startY = event.clientY;
+                };
+
+                const onMouseUp = () => {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                };
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            };
+
+            sceneRef.current?.addEventListener('mousedown', onMouseDown);
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            };
+
+            animate();
+        });
 
         // Position the camera
         camera.position.z = 5;
@@ -47,33 +82,13 @@ const MainScene = () => {
         // Add event listener for window resize
         window.addEventListener("resize", handleResize);
 
-        // Animation loop
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-
-            renderer.render(scene, camera);
-        };
-
-        // Start the animation
-        animate();
-
         return () => {
             window.removeEventListener("resize", handleResize);
             sceneRef.current?.removeChild(renderer.domElement);
         };
     }, []);
 
-    return (<>
-        <Canvas>
-            <ambientLight/>
-            <pointLight position={[10, 10, 10]}/>
-            <GltfModel url={modelPath}/>
-        </Canvas>
-        <div ref={sceneRef}></div>
-    </>);
+    return <div ref={sceneRef}></div>;
 };
 
 export default MainScene;
